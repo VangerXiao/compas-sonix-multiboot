@@ -1,5 +1,7 @@
 # Compás Player with SonixOS Multi-boot
 
+**English** · [简体中文](README.zh-CN.md)
+
 Two excellent open-source players, one HiBy R1, and a way to switch between them
 without opening a case, pulling the card, or reflashing.
 
