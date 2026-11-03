@@ -8,14 +8,14 @@ what they do. This project **does not replace either of them and has no
 affiliation with either upstream project**. Because it modifies parts of both
 systems, it **may introduce unknown bugs and other problems** — and those are
 very likely this project's fault. Unless a problem also reproduces after flashing
-the original system back, please report it here, not upstream.
+the original system back, **please report it in this repository**.
 
 ## What this repository is
 
-An **unofficial hobby project** that lets the two systems share one device: flash
-once, then switch as often as you like. A single device can hold **three systems
-at once** — CompásOS, SonixOS, and Rockbox, which CompásOS's own boot selector can
-start — and switch between them freely.
+An **unofficial, experimental** project that lets the two systems share one
+device: flash once, then switch as often as you like. Your one device can now
+hold **three systems at once** — CompásOS, SonixOS, and Rockbox, which CompásOS's
+own boot selector can start — and switch between them freely!
 
 | Piece | Where the code lives |
 |---|---|
@@ -52,24 +52,27 @@ power on
 SonixOS's settings live in `/sonix/data` on the card, so the two systems' user
 data stay separate and cannot collide.
 
-A plain restart inside SonixOS **keeps SonixOS** — coming back to CompásOS is an
-explicit choice, not an accident.
+A plain restart inside SonixOS **keeps SonixOS**; coming back to CompásOS takes
+the explicit "Slide to reboot to Compás". Likewise, an ordinary restart in
+CompásOS never switches systems either.
 
 ## Installing
 
 1. Put the release's `r1.upt` in the **card root** (the name must be exactly
    `r1.upt`, lower case).
-2. Put the release's Sonix root filesystem at `/sonix/rootfs.squashfs`, and make
-   sure `/sonix/data/` exists next to it (SonixOS keeps its settings there; it
-   may start empty).
+2. Unzip the release's Sonix archive into the card root, so that a `sonix` folder
+   exists there.
 3. Hold **volume-up**, press **power**, keep holding until the upgrade screen
-   appears. Wait for it to finish; the device reboots into CompásOS.
+   appears. Wait for it to finish; the device reboots into CompásOS. (If the
+   device is already running any system — the stock HiByOS, CompásOS or SonixOS
+   — you can also install it through that system's "install update from the SD
+   card" entry.)
 4. Settings -> System -> **Reboot to SonixOS** to switch over.
 5. In SonixOS, open the power menu and slide **"Reboot to Compás"** to come back.
 
-> **Always keep a working `r1.upt` in the card root.** The factory recovery path
-> (hold volume-up while powering on) has never failed, and it is the only way
-> back if something goes wrong.
+> If something goes wrong — or you want to flash a particular system back — **put
+> that system's image in the card root and rename it to `r1.upt`.** The factory
+> recovery path (hold volume-up while powering on) still works.
 
 ## Notes
 
@@ -78,16 +81,14 @@ explicit choice, not an accident.
 The CN_Enhanced builds address unstable GitHub access from parts of mainland
 China: GitHub requests are routed through a gh-proxy mirror (**on by default**;
 write `off` into `/usr/data/.compas/github_mirror.txt` to disable it). They also
-fix the NetEase plugin's login cookie being truncated, and size the quick
-drawer's captions like the rest of the interface (20 px on the default font-size
-tier).
+rework some of the network logic (chiefly the NetEase plugin's login cookie being
+truncated), size the quick drawer's captions a little larger for readability
+(20 px on the default font-size tier), and widen the coverage of the bundled
+fonts.
 
-The Chinese text rendering itself comes from **upstream CompásOS**, not from this
-project; only the drawer caption size is adjusted here.
-
-If you are not in mainland China, please use a release **without** the
-CN_Enhanced label — otherwise GitHub traffic may go through the proxy and be
-slower than it needs to be.
+If you are not in mainland China, please **use a `mutiboot` release without the
+`CN_Enhanced` label**, or **ignore the `CN_Enhanced` builds entirely** —
+otherwise they may bring unexpected network or other problems.
 
 ### About online updates
 
@@ -100,17 +101,17 @@ system's built-in online update**:
 - SonixOS's online update replaces the player and files on the card.
 
 When upstream releases a new version, this project has to merge it and rebuild
-the images. New images are published in Releases.
+the images. New images are published in Releases. Making online updates work
+with dual boot may be solved in the future.
 
 ## Reporting problems
 
 Open an [issue](../../issues) here.
 
-Please **do not** report problems with these builds to the CompásOS or SonixOS
+**One more time:** please do not report these problems to the CompásOS or SonixOS
 authors — anything that goes wrong with the modifications in this project is this
-project's responsibility, not theirs. Likewise, nothing here is proposed for
-upstream: these branches are a downstream fork and are not intended to be merged
-back.
+project's responsibility, not theirs. Likewise, nothing here is intended to
+affect upstream; these are downstream branches only.
 
 ## Keeping up with upstream
 
