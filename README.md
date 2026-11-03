@@ -134,3 +134,11 @@ repository).
 CompásOS and SonixOS are both GPLv3. These forks keep their licences and their
 notices; the modifications are in the branches linked above, as the licence
 requires. Release images are built from exactly those branches.
+
+## Acknowledgements
+
+- Thanks to [Starnished66](https://github.com/Starnished66) and the CompásOS
+  community.
+- Thanks to [Jepl4r](https://github.com/Jepl4r) and the SonixOS community.
+- Parts of this project were built with assistance from
+  [DeepSeek Harness](https://github.com/deepseek-ai), an AI coding assistant.
