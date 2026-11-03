@@ -2,36 +2,31 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-Two excellent open-source players, one HiBy R1, and a way to switch between them
-without opening a case, pulling the card, or reflashing.
-
-- **[CompásOS](https://github.com/Starnished66/compas-player)** — the polished
-  everyday player: a clean interface, broad codec support, plugins, a real
-  settings tree, and a community that keeps shipping improvements.
-- **[SonixOS](https://github.com/Jepl4r/sonix-player)** — a focused, minimal
-  player with a beautiful interface and a refreshingly small footprint.
-
-Both are the work of their own authors and both are very good at what they do.
-This project does not replace either of them, is not affiliated with either of
-them, and adds nothing to their source trees.
+A multi-boot modification for two excellent open-source players — **CompásOS**
+and **SonixOS**. Both are the work of their own authors and both are very good at
+what they do. This project **does not replace either of them and has no
+affiliation with either upstream project**. Because it modifies parts of both
+systems, it **may introduce unknown bugs and other problems** — and those are
+very likely this project's fault. Unless a problem also reproduces after flashing
+the original system back, please report it here, not upstream.
 
 ## What this repository is
 
-An **unofficial hobby project** that packages the two systems so they can share
-one device:
+An **unofficial hobby project** that lets the two systems share one device: flash
+once, then switch as often as you like. A single device can hold **three systems
+at once** — CompásOS, SonixOS, and Rockbox, which CompásOS's own boot selector can
+start — and switch between them freely.
 
 | Piece | Where the code lives |
 |---|---|
 | CompásOS with the dual-boot menu (vanilla) | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) branch **`mutiboot`** |
-| CompásOS with the CN enhancements (GitHub mirror, NetEase fixes, `v1.4.1CN` label) | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) branch **`cn-enhanced`** |
+| CompásOS with the CN enhancements | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) branch **`cn-enhanced`** |
 | SonixOS with the "reboot to Compás" pill | [`VangerXiao/sonix-player`](https://github.com/VangerXiao/sonix-player) branch **`compas-multiboot`** |
 | Prebuilt images | [Releases](../../releases) of this repository |
 
 `mutiboot` is the plain "upstream plus dual boot" build: nothing cosmetic, no
-network changes. `cn-enhanced` is `mutiboot` plus the conveniences that make the
-player comfortable to use from mainland China — an optional GitHub mirror for the
-update check and the two stores, and a fix for NetEase login cookies being
-truncated.
+network changes. `cn-enhanced` is `mutiboot` plus the conveniences listed under
+"About the CN_Enhanced builds" below.
 
 ## How the switch works
 
@@ -54,28 +49,58 @@ power on
                     hook clears both files and CompásOS comes up
 ```
 
-A plain restart inside SonixOS keeps SonixOS — leaving is an explicit choice.
+SonixOS's settings live in `/sonix/data` on the card, so the two systems' user
+data stay separate and cannot collide.
 
-SonixOS's settings live in `/sonix/data` on the card, so a SonixOS session can
-never disturb the CompásOS data in the internal volume.
-
-## The recovery path is untouched
-
-The factory recovery partitions (the ones that implement "hold volume-up, press
-power, flash `r1.upt` from the card") are never modified. Keep a known-good
-`r1.upt` in the card root at all times; it is the escape hatch that has never
-failed.
-
-**Always keep `r1.upt` on the card.**
+A plain restart inside SonixOS **keeps SonixOS** — coming back to CompásOS is an
+explicit choice, not an accident.
 
 ## Installing
 
-1. Copy `sonix/rootfs.squashfs` from a release to `/sonix/rootfs.squashfs` on the
-   card, and create `/sonix/data/` next to it.
-2. Copy the release's `r1.upt` to the card root.
+1. Put the release's `r1.upt` in the **card root** (the name must be exactly
+   `r1.upt`, lower case).
+2. Put the release's Sonix root filesystem at `/sonix/rootfs.squashfs`, and make
+   sure `/sonix/data/` exists next to it (SonixOS keeps its settings there; it
+   may start empty).
 3. Hold **volume-up**, press **power**, keep holding until the upgrade screen
    appears. Wait for it to finish; the device reboots into CompásOS.
-4. Settings -> System -> **Reboot to SonixOS** to try the other side.
+4. Settings -> System -> **Reboot to SonixOS** to switch over.
+5. In SonixOS, open the power menu and slide **"Reboot to Compás"** to come back.
+
+> **Always keep a working `r1.upt` in the card root.** The factory recovery path
+> (hold volume-up while powering on) has never failed, and it is the only way
+> back if something goes wrong.
+
+## Notes
+
+### About the CN_Enhanced builds
+
+The CN_Enhanced builds address unstable GitHub access from parts of mainland
+China: GitHub requests are routed through a gh-proxy mirror (**on by default**;
+write `off` into `/usr/data/.compas/github_mirror.txt` to disable it). They also
+fix the NetEase plugin's login cookie being truncated, and size the quick
+drawer's captions like the rest of the interface (20 px on the default font-size
+tier).
+
+The Chinese text rendering itself comes from **upstream CompásOS**, not from this
+project; only the drawer caption size is adjusted here.
+
+If you are not in mainland China, please use a release **without** the
+CN_Enhanced label — otherwise GitHub traffic may go through the proxy and be
+slower than it needs to be.
+
+### About online updates
+
+This image changes how both systems store their data, so **do not use either
+system's built-in online update**:
+
+- CompásOS's firmware update flashes the kernel and root filesystem partitions
+  directly, which overwrites the dual-boot hook and puts the stock kernel back —
+  dual boot stops working.
+- SonixOS's online update replaces the player and files on the card.
+
+When upstream releases a new version, this project has to merge it and rebuild
+the images. New images are published in Releases.
 
 ## Reporting problems
 
