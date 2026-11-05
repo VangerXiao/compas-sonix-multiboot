@@ -86,6 +86,11 @@ truncated), size the quick drawer's captions a little larger for readability
 (20 px on the default font-size tier), and widen the coverage of the bundled
 fonts.
 
+They also add **pinyin initial search**: typing `zjl` in the library search box
+finds 周杰伦, `wyt` finds 五月天. The hanzi-to-initial table (20476 common
+characters) is compiled into the player — no network, no extra files. This exists
+only in the CN_Enhanced builds; `mutiboot` stays as upstream ships it.
+
 If you are not in mainland China, please **use a `mutiboot` release without the
 `CN_Enhanced` label**, or **ignore the `CN_Enhanced` builds entirely** —
 otherwise they may bring unexpected network or other problems.
