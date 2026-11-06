@@ -84,12 +84,13 @@ write `off` into `/usr/data/.compas/github_mirror.txt` to disable it). They also
 rework some of the network logic (chiefly the NetEase plugin's login cookie being
 truncated), size the quick drawer's captions a little larger for readability
 (20 px on the default font-size tier), and widen the coverage of the bundled
-fonts.This also add pinyin initial search: typing `zjl` in the library search box
-finds 周杰伦, `wyt` finds 五月天. This exists only in the CN_Enhanced builds.
+fonts. This also adds pinyin initial search: typing `zjl` in the library search
+box finds 周杰伦, `wyt` finds 五月天. This exists only in the CN_Enhanced builds.
 
 If you are not in mainland China, please **use a `mutiboot` release without the
 `CN_Enhanced` label**, or **ignore the `CN_Enhanced` builds entirely** —
-otherwise they may bring unexpected network ,Japanese song titles messed up，or other problems.
+otherwise they may bring unexpected network problems, messed-up Japanese song
+titles, or other issues.
 
 ### About online updates
 
