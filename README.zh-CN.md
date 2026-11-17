@@ -1,41 +1,40 @@
-# Compás Player × SonixOS 双系统
+# 针对Hiby R1的多系统启动
 
 [English](README.md) · **简体中文**
 
-这是针对两个优秀的开源播放器——**CompásOS** 和 **SonixOS**——而开发的多启动修改版。两者都是各自作者的优秀作品，各有各的取舍。本项目**不替代任何一方，并且与两个上游项目没有任何隶属关系**。由于本项目修改了双方各自的部分内容，**可能会引入未知的错误和其他问题**；这些问题很可能是本项目导致的——除非刷回原版系统后仍能复现，否则**请在本仓库提交 Issue**。
+这是针对几个优秀的开源播放器——**CompásOS** 和 **SonixOS**,以及**Rockbox**  而开发的多启动修改版。这些都是各自作者的优秀作品，各有各的取舍。本项目**不替代任何一方，并且与上游项目没有任何隶属关系**。由于本项目修改了各自的部分内容，**可能会引入未知的错误和其他问题**；这些问题很可能是本项目导致的——除非刷回原版系统后仍能复现，否则**请在本仓库提交 Issue**。
 
 ## 这个仓库是什么
 
-一个非官方的实验性项目，让两个系统能在同一台设备上共存，刷一次即可长期切换，不必反复刷机。现在你的一台设备可以同时存放**三套系统**——CompásOS、SonixOS，以及通过 CompásOS 自带引导器启动的 Rockbox，并随意切换了!
+一个非官方的实验性项目，让多个系统能在同一台设备上共存，刷一次即可长期切换，不必反复刷机。现在你的一台设备可以同时存放**四套系统**——原厂的HibyOS,CompásOS、SonixOS，以及Rockbox，并随意切换了!
 
-| 内容                               | 代码位置                                                                                            |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
-| CompásOS + 双启动（原版修改版）    | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) 分支 **`mutiboot`**       |
-| CompásOS + CN 增强版               | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) 分支 **`cn-enhanced`**    |
-| SonixOS + "重启到 Compás" 电源菜单 | [`VangerXiao/sonix-player`](https://github.com/VangerXiao/sonix-player) 分支 **`compas-multiboot`** |
+| 内容                    | 代码位置                                                                                            |
+| ----------------------- | --------------------------------------------------------------------------------------------------- |
+| CompásOS （原版修改版） | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) 分支 **`mutiboot`**       |
+| CompásOS  CN 增强版     | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) 分支 **`cn-enhanced`**    |
+| SonixOS 修改版          | [`VangerXiao/sonix-player`](https://github.com/VangerXiao/sonix-player) 分支 **`compas-multiboot`** |
+//todo 添加rockbox修改版分支(rockbox_mutiboot_fix)
 | 预编译镜像                         | 本仓库的 [Releases](../../releases)                                                                 |
 
 `mutiboot` 是"上游 + 双启动"的纯净版本：不加任何外观改动、不改网络行为。
 `cn-enhanced` 在它之上增加了在国内网络环境下更好用的几处修改，见下方"关于 CN_Enhanced 版本"。
 
+## 切换系统
+按下音量-,同时按下开机按钮,设备会弹出引导界面.如果下次直接按下电源键开机,设备会记住上次的启动系统.如果缺少TF卡,或者TF卡内缺少对应的系统文件,将会默认启动到hibyOS
+
+
+## 为rockbox添加了新的修复
+
+rockbox目前已经支持800*480P MPEG1视频的播放.
+使用如下视频转换方式:
+//todo 添加视频转换方式的说明
+rockbox的picture flow按键映射现在已经得到修复,现在按下音量+/-直接翻页,按下播放/暂停进入专辑.
+
 ## 切换是怎么工作的
 
-CompásOS 放在内置存储，SonixOS 整个放在 TF 卡上。
 
-```
-开机
-  |
-  +-- 正常进入 CompásOS
-  |     设置 → 系统 → "重启到 SonixOS"
-  |        写入 /sonix/boot，重启
-  |
-  +-- CompásOS 的引导钩子看到 /sonix/boot
-        挂载 /sonix/rootfs.squashfs，把 /sonix/data 绑定到 /usr/data，
-        chroot 进入 SonixOS
-              |
-              +-- 电源菜单 → "滑动重启到 Compás"
-                    写入 /usr/data/boot_compas，重启
-                    钩子清除两个文件，CompásOS 启动
+
+//todo 阐述原理
 ```
 
 SonixOS 的设置存放在卡上的 `/sonix/data`，因此两个系统的用户数据相互隔离，不会冲突。
@@ -44,11 +43,7 @@ SonixOS 的设置存放在卡上的 `/sonix/data`，因此两个系统的用户�
 
 ## 安装
 
-1. 把 Release 里的 `r1.upt` 放到 **TF 卡根目录**（文件名必须正好是 `r1.upt`，全小写）。
-2. 把 Release 里的 Sonix 压缩包解压到TF卡根目录,即确保TF卡内根目录下存在 `/Sonix`
-3. 按住**音量+**，按**电源键**，继续按住，直到出现升级界面；等待刷写完成，设备会自动重启进入 CompásOS。(或者如果设备运行着任一系统(原厂的HibyOS,CompásOS或SonixOS),也可以通过`从SD卡安装更新`实现安装.)
-4. 设置 → 系统 → **重启到 SonixOS**，切换到 SonixOS。
-5. 在 SonixOS 中呼出电源菜单，滑动 **"重启到 Compás"**，即可回到 CompásOS。
+//todo 完善安装步骤
 
 > 如果遇到意外(或者想刷回某个系统),**将该系统包放置到根目录并重命名为 `r1.upt`。** 原厂恢复通道（按住音量+开机）仍然生效。
 
