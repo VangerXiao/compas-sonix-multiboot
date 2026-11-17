@@ -13,7 +13,7 @@
 | CompásOS （原版修改版） | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) 分支 **`mutiboot`**       |
 | CompásOS  CN 增强版     | [`VangerXiao/compas-player`](https://github.com/VangerXiao/compas-player) 分支 **`cn-enhanced`**    |
 | SonixOS 修改版          | [`VangerXiao/sonix-player`](https://github.com/VangerXiao/sonix-player) 分支 **`compas-multiboot`** |
-//todo 添加rockbox修改版分支(rockbox_mutiboot_fix)
+| Rockbox 修改版 | [`VangerXiao/rockbox`](https://github.com/VangerXiao/rockbox) 分支 **`rockbox_mutiboot_fix`** |
 | 预编译镜像                         | 本仓库的 [Releases](../../releases)                                                                 |
 
 `mutiboot` 是"上游 + 双启动"的纯净版本：不加任何外观改动、不改网络行为。
@@ -27,23 +27,25 @@
 
 rockbox目前已经支持800*480P MPEG1视频的播放.
 使用如下视频转换方式:
-//todo 添加视频转换方式的说明
+转码命令见 [`diy/docs/video-transcode.md`](https://github.com/VangerXiao/rockbox/blob/diy/r1-erosq/diy/docs/video-transcode.md)。多启动结构下 Rockbox 的关机也改成了直接调用 `reboot(2)`，短按电源键即可真正关机。
 rockbox的picture flow按键映射现在已经得到修复,现在按下音量+/-直接翻页,按下播放/暂停进入专辑.
 
 ## 切换是怎么工作的
 
 
 
-//todo 阐述原理
+设备的启动流程是 `内核 → /linuxrc → rcS 里的 init 脚本`。本项目的钩子 `S20switch` 插在 rcS 早期：它挂载 TF 卡、读取卡根目录的 `boot_target.txt`，再决定是留在 HiByOS，还是 chroot 进入卡上的某个 `rootfs.squashfs`。卡上的系统都是只读镜像，挂在 `/tmp/target` 后 chroot 进去，所以彼此互不干扰。
 ```
 
 SonixOS 的设置存放在卡上的 `/sonix/data`，因此两个系统的用户数据相互隔离，不会冲突。
 
-在 SonixOS 里**普通重启仍然回到 SonixOS**；要回 CompásOS 必须显式使用"滑动重启到 Compás"，同理,在Compás的普通重启也不会触发系统切换.
+两个系统的普通重启都回到自己；要回原厂请用设置里的"重启到 HiByOS"。
 
 ## 安装
 
-//todo 完善安装步骤
+1. 准备 TF 卡，卡根放 `compas/rootfs.squashfs`、`sonix/rootfs.squashfs` 与 `.rockbox/`。
+2. 用 Release 里的 `r1.upt` 刷入内核、原厂根文件系统与启动钩子。
+3. 开机按住音量− 进菜单选择系统；之后直接按电源键就进上次选中的系统。
 
 > 如果遇到意外(或者想刷回某个系统),**将该系统包放置到根目录并重命名为 `r1.upt`。** 原厂恢复通道（按住音量+开机）仍然生效。
 
@@ -51,7 +53,7 @@ SonixOS 的设置存放在卡上的 `/sonix/data`，因此两个系统的用户�
 
 ### 关于 CN_Enhanced 版本
 
-CN_Enhanced 版本针对中国大陆部分地区 GitHub 访问不稳定的问题，为 GitHub 请求增加了 gh-proxy 代理（**默认开启**，可在 `/usr/data/.compas/github_mirror.txt` 中写入 `off` 关闭），修复了部分网络逻辑(主要是针对第三方网易云插件登录 Cookie 被截断的问题而修改的)，并把快捷抽屉的字号稍微调大以增强可读性（默认档位 20 px）,拓展了部分字体的覆盖范围。另外新增了**拼音首字母搜索**：在曲库搜索框里输入 `zjl` 即可找到「周杰伦」，输入 `wyt` 找到「五月天」。该功能只存在于 CN_Enhanced 版本。
+CN_Enhanced 版本把快捷抽屉的字号稍微调大以增强可读性（默认档位 20 px），拓展了部分字体的覆盖范围，并**不修改任何网络行为**。另外新增了**拼音首字母搜索**：在曲库搜索框里输入 `zjl` 即可找到「周杰伦」，输入 `wyt` 找到「五月天」。该功能只存在于 CN_Enhanced 版本。
 
 如果您不在中国大陆地区，请**使用 `mutiboot` 发行版**，或**彻底忽略带有 `CN_Enhanced` 的版本**，否则可能带来未知的网络问题、日文歌名显示错乱或其他问题。
 
