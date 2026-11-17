@@ -35,7 +35,6 @@ rockbox的picture flow按键映射现在已经得到修复,现在按下音量+/-
 
 
 设备的启动流程是 `内核 → /linuxrc → rcS 里的 init 脚本`。本项目的钩子 `S20switch` 插在 rcS 早期：它挂载 TF 卡、读取卡根目录的 `boot_target.txt`，再决定是留在 HiByOS，还是 chroot 进入卡上的某个 `rootfs.squashfs`。卡上的系统都是只读镜像，挂在 `/tmp/target` 后 chroot 进去，所以彼此互不干扰。
-```
 
 SonixOS 的设置存放在卡上的 `/sonix/data`，因此两个系统的用户数据相互隔离，不会冲突。
 
