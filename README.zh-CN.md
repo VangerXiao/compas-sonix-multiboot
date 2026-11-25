@@ -124,3 +124,5 @@ CompásOS 与 SonixOS 均为 GPLv3。这些 fork 保留各自的许可证与声�
 - 感谢 [Starnished66](https://github.com/Starnished66) 与 CompásOS 社区。
 - 感谢 [Jepl4r](https://github.com/Jepl4r) 与 SonixOS 社区。原仓库已无法访问，Sonix 社区现由 [Tartarus6/sonix-player](https://github.com/Tartarus6/sonix-player) 继续维护；HiBy R3II 2025 的移植来自 [unrau/sonix-player](https://github.com/unrau/sonix-player)，一并感谢。
 - 本项目部分由 AI 协助完成（[DeepSeek Harness](https://github.com/deepseek-ai)）。
+
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)

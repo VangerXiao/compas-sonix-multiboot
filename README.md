@@ -125,3 +125,5 @@ CompásOS and SonixOS are GPLv3. These forks keep their licences and notices, an
 - To [Starnished66](https://github.com/Starnished66) and the CompásOS community.
 - To [Jepl4r](https://github.com/Jepl4r) and the SonixOS community. The original repository is no longer reachable; the community continues at [Tartarus6/sonix-player](https://github.com/Tartarus6/sonix-player), and the HiBy R3II 2025 port came from [unrau/sonix-player](https://github.com/unrau/sonix-player). Thanks to all of them.
 - Parts of this project were written with AI assistance ([DeepSeek Harness](https://github.com/deepseek-ai)).
+
+[![](https://img.shields.io/badge/powered_by-dsh-4D6BFE?style=flat-square&logo=deepseek&logoColor=white)](https://github.com/deepseek-ai/deepseek-harness)
