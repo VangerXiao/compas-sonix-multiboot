@@ -75,12 +75,16 @@ cloner-2.5.80.2-windows_alpha\configs\x1600\
 
 > 如果 `Auto Detect` 认不出平台，说明设备没连上或不在烧录模式，回第 3 步重来。
 
-### 5. 刷写
+### 5. 选择镜像并开始刷写
 
-1. 回到主界面，点 **`Load Image`**，选择社区整包里的 `.ingenic`（或官方同名文件）
-2. 点 **`Start`**
-3. **期间不要拔线、不要锁屏、不要操作电脑**，大约 1–3 分钟
-4. 界面显示成功（Success Count 加 1）即可拔线，长按电源键开机
+1. 回到主界面，点 **`Load Image`**
+2. 在弹出的文件框里，**直接选中社区整包 `HiBy_R3II_v1.1_cloner_2.5.80.2.zip` 本身**
+   —— 不需要解压，工具会自己从 zip 里取 spl、uboot、kernel、rootfs
+3. 确认主界面右下角显示的是这个 zip 的路径，点 **`Start`**
+4. **期间不要拔线、不要锁屏、不要操作电脑**，大约 1–3 分钟
+5. 界面显示成功（Success Count 加 1）即可拔线，长按电源键开机
+
+![选择镜像并点击开始](r3ii-cloner/step6-load-image.png)
 
 ## 常见问题
 
@@ -165,7 +169,9 @@ Press **`Auto Detect`**, answer **`Yes`** to "confirm whether to select the dete
 
 > If `Auto Detect` cannot identify the platform, the device is not connected or not in burn mode — repeat step 3.
 
-**5. Flash.** Back in the main window press **`Load Image`**, choose the `.ingenic` from the community package (or HiBy's), then **`Start`**. Do not unplug, lock the screen or touch anything for the 1–3 minutes it takes; unplug and power on once it reports success (Success Count increases).
+**5. Choose the image and flash.** Back in the main window press **`Load Image`**, then select the community archive **`HiBy_R3II_v1.1_cloner_2.5.80.2.zip` itself** — do not unzip it; the tool reads spl, uboot, kernel and rootfs straight out of the zip. Check that the path shown at the bottom right is that zip, press **`Start`**, and do not unplug, lock the screen or touch anything for the 1–3 minutes it takes. Unplug and power on once it reports success (Success Count increases).
+
+![Select the image and press Start](r3ii-cloner/step6-load-image.png)
 
 ### Troubleshooting
 
