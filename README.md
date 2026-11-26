@@ -2,7 +2,7 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-A multi-boot modification built around several excellent open-source players — **CompásOS**, **SonixOS** and **Rockbox**. Each is the work of its own authors and each makes its own trade-offs. This project **does not replace any of them and has no affiliation with any upstream project**. Because it modifies parts of them, it **may introduce unknown bugs and other problems** — and those are very likely this project's fault. Unless a problem also reproduces after flashing the original system back, **please report it in this repository**.
+A multi-boot modification built around several excellent open-source players — **CompásOS**, **SonixOS** and **Rockbox**（Hiby R1 only）. Each is the work of its own authors and each makes its own trade-offs. This project **does not replace any of them and has no affiliation with any upstream project**. Because it modifies parts of them, it **may introduce unknown bugs and other problems** — and those are very likely this project's fault. Unless a problem also reproduces after flashing the original system back, **please report it in this repository**.
 
 | Device | Systems you can boot | Open the menu with |
 | --- | --- | --- |
