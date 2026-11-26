@@ -15,7 +15,7 @@ HiBy documents "hold play/pause while powering on to enter recovery". Reading th
 
 Every firmware in Releases has been tested on real hardware, but a boot can still fail in bad cases — and **if it fails in a way that no system can start, the device is bricked**. Mine did brick during development, and the way back was Ingenic's official Cloner over USB. That is far more involved than the R1 route of reflashing from the built-in updater.
 
-So if you own an R3II 2025, weigh the risk, **use a stable TF card to minimize risk**, and be ready to use the cloner to flash the stock system back. **The exact steps, the board config and a community-verified flashing package are in [docs/r3ii-recovery.md](docs/r3ii-recovery.md).** **HiBy R1 owners can ignore this section**: the R1 keeps a usable built-in recovery path.
+So if you own an R3II 2025, weigh the risk, **use a stable TF card to minimize risk**, and be ready to use the cloner to flash the stock system back. **The exact steps, the board config and a community-verified flashing package are in [docs/r3ii-cloner-guide.md](docs/r3ii-cloner-guide.md).** **HiBy R1 owners can ignore this section**: the R1 keeps a usable built-in recovery path.
 
 ## What this repository is
 
