@@ -15,7 +15,7 @@ HiBy documents "hold play/pause while powering on to enter recovery". Reading th
 
 Every firmware in Releases has been tested on real hardware, but a boot can still fail in bad cases — and **if it fails in a way that no system can start, the device is bricked**. Mine did brick during development, and the way back was Ingenic's official Cloner over USB. That is far more involved than the R1 route of reflashing from the built-in updater.
 
-So if you own an R3II 2025, weigh the risk, and be ready to use the cloner to flash the stock system back. **HiBy R1 owners can ignore this section**: the R1 keeps a usable built-in recovery path.
+So if you own an R3II 2025, weigh the risk, **use a stable TF Card to to minimize risk**,and be ready to use the cloner to flash the stock system back. **HiBy R1 owners can ignore this section**: the R1 keeps a usable built-in recovery path.
 
 ## What this repository is
 
@@ -41,8 +41,6 @@ An **unofficial, experimental** project that lets multiple systems share one dev
 
 > To recover, or to flash a particular system back, **put that system's package in the card root and rename it**:
 > - HiBy R1: rename it to `r1.upt`, then hold VOL+ while powering on to enter the built-in updater;
-> - HiBy R3II 2025: rename it to `r3ii_2025.upt`, then use **Settings → Firmware update → via SD card**.
->
 > The R3II has no key-based entry point, so always keep at least one bootable system, or have the cloner ready.
 
 ## Switching systems
