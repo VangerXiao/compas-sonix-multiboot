@@ -64,6 +64,17 @@ Boot is `kernel → /linuxrc → the init scripts in rcS`. The hook, `S20switch`
 
 A normal restart returns each system to itself; to get back to the stock system, use "Reboot to HiByOS" in the settings.
 
+### About the kernel
+
+Both devices carry a **non-stock kernel** in the boot image, and every system runs on it:
+
+| Device | Kernel in the boot image | Why |
+| --- | --- | --- |
+| HiBy R1 | the Sonix kernel | it provides zram, which CompasOS and SonixOS need to live in 64 MB of RAM |
+| HiBy R3II 2025 | **the CompasOS kernel** | on HiBy's stock kernel CompasOS freezes and reboots after a few minutes of playback: the kernel log stops right after the DAC powers down and prints no panic at all. On the CompasOS kernel an hour of playback is stable, and HiByOS itself still boots normally on it. |
+
+All systems share that one kernel; the module set is byte-identical across the images, so switching is unaffected.
+
 Every failure path in the hook **falls back to the stock boot** (no card, missing image, unparsable marker, failed mount all `exit 0`), so a broken hook can never leave the device without a system.
 
 ## Where the data lives
