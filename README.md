@@ -64,7 +64,6 @@ Boot is `kernel → /linuxrc → the init scripts in rcS`. The hook, `S20switch`
 
 A normal restart returns each system to itself; to get back to the stock system, use "Reboot to HiByOS" in the settings.
 
-The R3II boot image carries the Compás kernel, because CompasOS is not fully compatible with HiBy's stock kernel; the R1 image carries the Sonix kernel, which provides zram. The card images and modules are the same for both.
 
 Every failure path in the hook **falls back to the stock boot** (no card, missing image, unparsable marker, failed mount all `exit 0`), so a broken hook can never leave the device without a system.
 
@@ -77,7 +76,6 @@ Every failure path in the hook **falls back to the stock boot** (no card, missin
 | SonixOS | TF card | **TF card** (`sonix/data`, isolated from the others) |
 | Rockbox (R1) | TF card `.rockbox/` | TF card |
 
-CompásOS is a fork of HiByOS and reads and writes the same data layout, so sharing with the stock system is exactly what installing CompásOS over it would do. SonixOS comes from a different lineage, and its mount helper **re-creates the userdata volume** when it does not recognise the layout — which is why its data sits on the card instead.
 
 ## About CN_Enhanced
 
