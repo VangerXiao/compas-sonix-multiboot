@@ -56,7 +56,7 @@ The menu writes the choice to `boot_target.txt` on the card, so the next plain p
 
 - **800×480 MPEG1 video** playback; see [`diy/docs/video-transcode.md`](https://github.com/VangerXiao/rockbox/blob/diy/r1-erosq/diy/docs/video-transcode.md) for the transcode command.
 - PictureFlow key mapping is fixed: VOL +/− pages, PLAY/PAUSE opens an album.
-- Under multi-boot, Rockbox shuts down by calling `reboot(2)` directly, so **a short power press really powers it off**.
+- Under multi-boot, Rockbox shuts down by calling `reboot(2)` directly, so a short power press really powers it off.
 
 ## How switching works
 
