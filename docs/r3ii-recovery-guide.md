@@ -103,7 +103,7 @@ cloner-2.5.80.2-windows_alpha\configs\x1600\
 
 想回到多启动：
 
-1. 把 `r3ii.upt` 放到卡根，用「通过 SD 卡升级」刷入（见 [README](../README.md)）
+1. 把 `r3ii_2025.upt` 放到卡根，用「通过 SD 卡升级」刷入（见 [README](../README.md)）
 2. 解压对应版本的卡上系统包（`r3ii_mutiboot.zip` 或 `r3ii_cnenhanced.zip`）到卡根
 3. 开机按住「播放/暂停」进入菜单选择系统
 
@@ -190,6 +190,6 @@ The flash is the stock single-system layout again: the multi-boot hook and the c
 
 To return to multi-boot:
 
-1. put `r3ii.upt` in the card root and flash it with **Settings → Firmware update → via SD card** (see the [README](../README.md));
+1. put `r3ii_2025.upt` in the card root and flash it with **Settings → Firmware update → via SD card** (see the [README](../README.md));
 2. unzip the card archive for the variant you want (`r3ii_mutiboot.zip` or `r3ii_cnenhanced.zip`) into the card root;
 3. hold **PLAY/PAUSE** while powering on to reach the boot menu.
