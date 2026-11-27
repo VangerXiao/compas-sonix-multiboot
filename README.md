@@ -89,9 +89,6 @@ Outside mainland China, **use the `mutiboot` build**, or **ignore anything label
 
 This image changes how the systems are stored, so **do not use either system's built-in updater**:
 
-- CompásOS's firmware update flashes the kernel and root filesystem partitions, which overwrites the multi-boot hook and puts the stock kernel back — multi-boot is gone;
-- SonixOS's online update replaces the player and its files on the card.
-
 When upstream ships a new version, this project has to merge it and rebuild the images; new images appear in Releases. Making the in-system updaters aware of multi-boot may be solved later.
 
 ## Problems
